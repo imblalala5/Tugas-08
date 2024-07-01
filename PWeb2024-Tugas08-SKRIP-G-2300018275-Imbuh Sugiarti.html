@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biodata Diri Mahasiswa</title>
+    <style>
+        body {
+            background-color: rgb(143, 48, 108);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+        h1, h3 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        label {
+            flex: 1;
+            margin-right: 10px;
+        }
+        input[type="text"],
+        input[type="date"],
+        select {
+            flex: 2;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #5a52d4;
+        }
+        .gender-group {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+        #biodataOutput {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BIODATA MAHASISWA</h1>
+        <form onsubmit="event.preventDefault(); showBiodata();">
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="nim">NIM:</label>
+                <input type="text" id="nim" required>
+            </div>
+            <div class="form-group">
+                <label for="jenisKelamin">Jenis Kelamin:</label>
+                <div class="gender-group">
+                    <label><input type="radio" name="jenisKelamin" value="Pria"> Pria</label>
+                    <label><input type="radio" name="jenisKelamin" value="Wanita"> Wanita</label>
+                    <label><input type="radio" name="jenisKelamin" value="Lainnya"> Lainnya</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tempatLahir">Tempat Lahir:</label>
+                <input type="text" id="tempatLahir" required>
+            </div>
+            <div class="form-group">
+                <label for="tanggalLahir">Tanggal Lahir:</label>
+                <input type="date" id="tanggalLahir" required>
+            </div>
+            <div class="form-group">
+                <label for="agama">Agama:</label>
+                <input type="text" id="agama" required>
+            </div>
+            <div class="form-group">
+                <label for="hobi">Hobi:</label>
+                <input type="text" id="hobi" required>
+            </div>
+            <div class="form-group">
+                <label for="noHp">Nomor HP:</label>
+                <input type="text" id="noHp" required>
+            </div>
+            <div class="form-group">
+                <label for="fakultas">Fakultas:</label>
+                <input type="text" id="fakultas" required>
+            </div>
+            <div class="form-group">
+                <label for="prodi">Program Studi:</label>
+                <input type="text" id="prodi" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="biodataOutput"></div>
+    </div>
+    <script>
+        function showBiodata(){
+            var nama = document.getElementById("nama").value;
+            var nim = document.getElementById("nim").value;
+            var jenisKelamin = document.querySelector('input[name="jenisKelamin"]:checked').value;
+            var tempatLahir = document.getElementById("tempatLahir").value;
+            var tanggalLahir = document.getElementById("tanggalLahir").value;
+            var agama = document.getElementById("agama").value;
+            var hobi = document.getElementById("hobi").value;
+            var noHp = document.getElementById("noHp").value;
+            var fakultas = document.getElementById("fakultas").value;
+            var prodi = document.getElementById("prodi").value;
+
+            // Validasi input
+            if (nama.trim() === ''){
+                alert('Nama harus diisi');
+                return;
+            }
+            if (nim.trim() === ''){
+                alert('NIM harus diisi');
+                return;
+            }
+            if(!/^\d+$/.test(nim)){
+                alert('NIM harus berupa angka');
+                return;
+            }
+            if (jenisKelamin.trim() === ''){
+                alert('Jenis Kelamin harus diisi');
+                return;
+            }
+            if (tempatLahir.trim() === ''){
+                alert('Tempat Lahir harus diisi');
+                return;
+            }
+            if (tanggalLahir.trim() === ''){
+                alert('Tanggal Lahir harus diisi');
+                return;
+            }
+            if (agama.trim() === ''){
+                alert('Agama harus diisi');
+                return;
+            }
+            if (hobi.trim() === ''){
+                alert('Hobi harus diisi');
+                return;
+            }
+            if (noHp.trim() === ''){
+                alert('Nomor HP harus diisi');
+                return;
+            }
+            if(!/^\d+$/.test(noHp)){
+                alert('Nomor HP harus berupa angka');
+                return;
+            }
+            if (fakultas.trim() === ''){
+                alert('Fakultas harus diisi');
+                return;
+            }
+            if (prodi.trim() === ''){
+                alert('Program Studi harus diisi');
+                return;
+            }
+
+            var biodataOutput = document.getElementById("biodataOutput");
+            biodataOutput.innerHTML = "<h1>PROFILE</h1>" +
+                "<h3>Nama: " + nama + "</h3>" +
+                "<h3>NIM: " + nim + "</h3>" +
+                "<h3>Jenis Kelamin: " + jenisKelamin + "</h3>" +
+                "<h3>Tempat, Tanggal Lahir: " + tempatLahir + ", " + tanggalLahir + "</h3>" +
+                "<h3>Agama: " + agama + "</h3>" +
+                "<h3>Hobi: " + hobi + "</h3>" +
+                "<h3>Nomor HP: " + noHp + "</h3>" +
+                "<h3>Fakultas: " + fakultas + "</h3>" +
+                "<h3>Prodi: " + prodi + "</h3>";
+        }
+    </script>
+</body>
+</html>
